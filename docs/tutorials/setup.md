@@ -31,12 +31,19 @@ import TabItem from '@theme/TabItem';
 <TabItem value="windows" label="Windows" default>
 
 1. Go to [nvidia.com/drivers](https://www.nvidia.com/drivers) or open **NVIDIA GeForce Experience**
-2. Download and install the latest driver
-3. Verify:
+2. Find this tab : 
+
+![Hybridizer Overview](../images/Screen1.png)
+
+3. Verify in the command prompt:
 
 ```bash
 nvidia-smi
 ```
+
+4. Be sure to have an output that gives you your GPU name, driver version, and CUDA version:
+
+![Hybridizer Overview](../images/Screen2.png)
 
 </TabItem>
 <TabItem value="linux" label="Linux">
@@ -60,14 +67,7 @@ Alternatively, install via the [CUDA toolkit](#step-2-install-cuda-toolkit) whic
 
 You should see your GPU name, driver version, and CUDA version:
 
-```
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 560.xx    Driver Version: 560.xx    CUDA Version: 12.6          |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        | ...       |                      |
-| GeForce RTX 4070 | ...       |                      |
-+-------------------------------+----------------------+----------------------+
-```
+
 
 ## Step 2: Install CUDA Toolkit
 
