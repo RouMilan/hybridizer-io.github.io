@@ -31,9 +31,12 @@ import TabItem from '@theme/TabItem';
 <TabItem value="windows" label="Windows" default>
 
 1. Go to [nvidia.com/drivers](https://www.nvidia.com/drivers) or open **NVIDIA GeForce Experience**
+
+If you use **Geforce Experience** :
+
 2. Find this tab : 
 
-![Hybridizer Overview](../images/Screen1.png)
+![Geforce Screen]()
 
 3. Verify in the command prompt:
 
@@ -41,9 +44,9 @@ import TabItem from '@theme/TabItem';
 nvidia-smi
 ```
 
-4. Be sure to have an output that gives you your GPU name, driver version, and CUDA version:
+4. Be sure to have an output that gives you your GPU name, driver version, and CUDA version, like this:
 
-![Hybridizer Overview](../images/Screen2.png)
+![Verifying Driver]()
 
 </TabItem>
 <TabItem value="linux" label="Linux">
@@ -65,27 +68,30 @@ Alternatively, install via the [CUDA toolkit](#step-2-install-cuda-toolkit) whic
 </TabItem>
 </Tabs>
 
-You should see your GPU name, driver version, and CUDA version:
+
 
 
 
 ## Step 2: Install CUDA Toolkit
 
-Download from [developer.nvidia.com/cuda-downloads](https://developer.nvidia.com/cuda-downloads).
+/!\ Important information : Hybridizer only works on CUDA Version 13.0 /!\
+
+
+Download from [developer.nvidia.com/cuda-downloads]((https://developer.nvidia.com/cuda-13-0-0-download-archive)).
 
 <Tabs>
 <TabItem value="windows" label="Windows" default>
 
 1. Choose **Windows → x86_64 → exe (local)**
 2. Run the installer — default options are fine
-3. Verify:
+3. Verify in the command prompt:
 
 ```bash
 nvcc --version
 ```
 
 :::tip
-If `nvcc` is not found, add `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.x\bin` to your system PATH.
+If `nvcc` is not found, add `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.0\bin` to your system PATH.
 :::
 
 </TabItem>
@@ -118,10 +124,7 @@ nvcc --version
 
 Expected output:
 
-```
-nvcc: NVIDIA (R) Cuda compiler driver
-Cuda compilation tools, release 12.x, V12.x.xxx
-```
+![PhotoTuto](Screen6.png)
 
 ## Step 3: Install .NET 8 SDK
 
@@ -181,7 +184,7 @@ g++ --version
 
 ## Step 5: Install Hybridizer
 
-Create a new .NET 8 console project and add the Hybridizer packages:
+Create a new .NET 8 console project and add the Hybridizer packages by typing this in the terminal :
 
 ```bash
 dotnet new console -n MyFirstHybridizer --framework net8.0
@@ -189,11 +192,18 @@ cd MyFirstHybridizer
 dotnet add package Hybridizer.Runtime.CUDAImports
 ```
 
+You can now close and open Visual Studio.
+
 :::tip
 On **Windows with Visual Studio**, you can also install the **Hybridizer Community Edition** extension from the Visual Studio Marketplace for integrated project templates.
 :::
 
-## Step 6: Verify Your Setup
+## Step 6: Install Git
+
+If you don't already have git, you can install it [here]((https://git-scm.com/install/))
+
+
+## Step 7: Verify Your Setup
 
 Replace the content of `Program.cs` with:
 
