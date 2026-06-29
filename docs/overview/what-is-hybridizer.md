@@ -7,7 +7,11 @@ keywords: [Hybridizer, compiler, MSIL, CUDA, AVX, OMP, .NET]
 
 # What is Hybridizer?
 
-The aim of the Hybridizer is to let developers seamlessly use different hardware execution environments. It integrates in the compilation toolchain: from an intermediate language, it generates source code for different types of architectures. The Hybridizer abstracts the specific SDK and language features of processors, hence reducing the learning curve to many-core processor enablement.
+The aim of the Hybridizer is to let developers seamlessly use different hardware execution environments to make sure their work is done the fastest way possible. 
+
+It integrates in the compilation toolchain: from an intermediate language, it generates source code for different types of architectures. 
+
+The Hybridizer abstracts the specific SDK and language features of processors, therefore reducing the learning curve to many-core processor programs.
 
 ## Hybridizer in Operation
 

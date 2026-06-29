@@ -36,7 +36,7 @@ If you use **Geforce Experience** :
 
 2. Find this tab : 
 
-![Geforce Screen]()
+METTRE UNE IMAGE LA 
 
 3. Verify in the command prompt:
 
@@ -46,7 +46,7 @@ nvidia-smi
 
 4. Be sure to have an output that gives you your GPU name, driver version, and CUDA version, like this:
 
-![Verifying Driver]()
+METTRE UNE IMAGE LA 
 
 </TabItem>
 <TabItem value="linux" label="Linux">
@@ -124,7 +124,7 @@ nvcc --version
 
 Expected output:
 
-![PhotoTuto](Screen6.png)
+METTRE UNE PHOTO 
 
 ## Step 3: Install .NET 8 SDK
 
@@ -280,7 +280,8 @@ Memory: 12282 MB
 | Runtime "No CUDA device" | Check GPU with `nvidia-smi`, update drivers |
 | `libcudart.so` not found (Linux) | Set `LD_LIBRARY_PATH` to CUDA lib directory |
 | DLL not found at runtime (Windows) | Ensure CUDA bin directory is in PATH |
-
+| Compilation errors on Visual Studio | Check your CUDA Version : Only 13.0 is supported |
+| `dotnet run` doesn't load | Check your CUDA Version : Only 13.0 is supported |
 ## Next
 
 You're ready! Proceed to [Your First Kernel →](./first-kernel)
