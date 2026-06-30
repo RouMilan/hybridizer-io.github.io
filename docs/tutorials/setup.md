@@ -36,7 +36,7 @@ If you use **Geforce Experience** :
 
 2. Find this tab : 
 
-METTRE UNE IMAGE LA 
+![Resultats Tests](../images/geforce-installation.png)
 
 3. Verify in the command prompt:
 
@@ -46,7 +46,7 @@ nvidia-smi
 
 4. Be sure to have an output that gives you your GPU name, driver version, and CUDA version, like this:
 
-METTRE UNE IMAGE LA 
+![Resultats Tests](../images/nvidia-commandprompt.png)
 
 </TabItem>
 <TabItem value="linux" label="Linux">
@@ -122,9 +122,9 @@ nvcc --version
 </TabItem>
 </Tabs>
 
-Expected output:
+Expected output :
 
-METTRE UNE PHOTO 
+![Resultats Tests](../images/nvcc-installation-check.png)
 
 ## Step 3: Install .NET 8 SDK
 
@@ -200,7 +200,7 @@ On **Windows with Visual Studio**, you can also install the **Hybridizer Communi
 
 ## Step 6: Install Git
 
-If you don't already have git, you can install it [here]((https://git-scm.com/install/))
+If you don't already have git, you can install it [here]((https://git-scm.com/install/windows))
 
 
 ## Step 7: Verify Your Setup
