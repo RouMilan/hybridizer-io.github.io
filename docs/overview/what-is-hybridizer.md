@@ -15,35 +15,44 @@ The Hybridizer abstracts the specific SDK and language features of processors, t
 
 ## Hybridizer in Operation
 
-The Hybridizer operates on **intermediate language** — code that has been compiled to be either executed by a virtual machine or compiled to machine code. The supported input intermediate languages are:
+The Hybridizer operates on **intermediate language** — code that has been compiled to be either executed by a virtual machine or compiled to machine code. 
+
+The supported input intermediate languages are:
 
 | Input Language | Description |
 |----------------|-------------|
 | **MSIL** | Microsoft Intermediate Language — the .NET platform |
 | **LLVM-IR** | The intermediate representation of LLVM |
 
-Then, depending on the selected **Flavor** (see [Platforms & Flavors](/platforms/overview)), the Hybridizer generates source code with all the necessary annotations and code hints to make use of the specific features of each hardware architecture.
+Then, depending on the selected **Flavor** (see [Platforms & Flavors](/platforms/overview)), 
+the Hybridizer generates source code with all the necessary annotations and code hints to make use of the 
+specific features of each hardware architecture.
+
+Here is an example of all the possibilities of Hybridizer :
 
 ![Hybridizer Overview](../images/what-is-hybridizer.png)
 
-From a single version of the source intermediate language, **several platforms may be targeted**.
+From a single version of the source intermediate language, **several platforms can be targeted**.
 
 ## Key Concepts
 
-- **Single-source**: Write idiomatic C#; Hybridizer compiles MSIL to native code.
-- **Multiple backends**: CUDA kernels, OpenMP+CUDA, and vector backends (AVX/AVX512/NEON/POWER).
-- **Performance**: Leverages backend-specific optimizations (e.g., SIMT on GPU, SIMD on CPU).
-- **Interoperability**: Generated code is callable from your .NET host.
+- **Single-source**: Write standard C#; Hybridizer will compile MSIL to high-performance native code.
+
+- **Multiple Available backends**: CUDA kernels, OpenMP+CUDA, and vector backends (AVX/AVX512/NEON/POWER).
+
+- **Performance**: Automatically optimizes code for the underlying hardware, utilizing GPU (SIMT) and CPU (SIMD) capabilities.
+
+- **Connectivity**: Generated code is callable from your .NET host.
 
 ## Why Hybridizer?
 
 | Benefit | Description |
 |---------|-------------|
-| **Speed** | GPU acceleration and vectorized CPU paths from one code base |
+| **Speed** | Usage of GPU instead of CPU |
 | **Productivity** | No need to manually rewrite kernels in C++/CUDA |
-| **Portability** | Keep your .NET code; target diverse hardware |
-| **Maintainability** | Fewer language boundaries; debug with line info support |
-| **Trust** | Deterministic compilation pipeline, explicit attributes and annotations |
+| **Portability** | Keep your .NET code; target multiple hardware |
+| **Maintainability** | Fewer language boundaries; debug with powershell info support |
+| **Reliability** | Predictable compilation pipeline, explicit attributes and annotations |
 
 ## Known Limitations
 
