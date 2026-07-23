@@ -12,6 +12,10 @@ This tutorial gets you from zero to a working Hybridizer environment. By the end
 
 Hybridizer supports **Windows** and **Linux**, using **.NET 8** (or later).
 
+:::caution
+Hybridizer requires **Visual Studio 2022** (with the *Desktop development with C++* workload) to be installed **before** the CUDA Toolkit. If Visual Studio 2022 isn't installed first, the CUDA Toolkit won't work correctly. Only **CUDA Toolkit 13.0** is supported by Hybridizer — see [Step 2](#step-2-install-cuda-toolkit).
+:::
+
 ## Prerequisites
 
 | Component | Minimum | Recommended |
@@ -38,15 +42,43 @@ If you use **Geforce Experience** :
 
 ![Resultats Tests](../images/geforce-installation.png)
 
-3. Verify in the command prompt:
+Cliquez sur cet onglet pour accéder à la mise à jour des pilotes.
+
+3. Install with the Express Installation
+4. Then verify in the command prompt:
 
 ```bash
 nvidia-smi
 ```
 
-4. Be sure to have an output that gives you your GPU name, driver version, and CUDA version, like this:
+5. Be sure to have an output that gives you your GPU name, driver version, and CUDA version, like this:
 
-![Resultats Tests](../images/nvidia-commandprompt.png)
+```Microsoft Windows [Version 10.0.26200.8655]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\hybridizer-user>nvidia-smi
+Tue Jun 23 10:54:24 2026
++-----------------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.62                     KMD Version: 610.62          CUDA UMD Version: 13.3      |
++-----------------------------------------+-------------------------+---------------------------+
+| GPU  Name                 Driver-Model  | Bus-Id           Disp.A | Volatile Uncorr. ECC      |
+| Fan  Temp  Perf           Pwr:Usage/Cap |          Memory-Usage   | GPU-Util  Compute M.      |
+|                                         |                         |                    MIG M. |
+|===============================================================================================|
+|   0  NVIDIA GeForce RTX 3050 ...  WDDM  | 00000000:01:00.0 Off    |                  N/A      |
+| N/A   48C    P0            749W / 40W   |     0MiB /  6144MiB     |       0%     Default      |
+|                                         |                         |                    N/A    |
++-----------------------------------------+-------------------------+---------------------------+
+
++-----------------------------------------------------------------------------------------------+
+| Processes:                                                                                    |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory       |
+|        ID   ID                                                                Usage           |
+|===============================================================================================|
+|  No running processes found                                                                   |
++-----------------------------------------------------------------------------------------------+
+```
+
 
 </TabItem>
 <TabItem value="linux" label="Linux">
@@ -74,16 +106,19 @@ Alternatively, install via the [CUDA toolkit](#step-2-install-cuda-toolkit) whic
 
 ## Step 2: Install CUDA Toolkit
 
-/!\ Important information : Hybridizer only works on CUDA Version 13.0 /!\
+/!\ Important information : Hybridizer only works on CUDA Version **13.0** /!\
 
+:::caution
+Install the **CUDA Toolkit only** — do **not** install/update the NVIDIA driver from this step. The driver was already installed in [Step 1](#step-1-install-nvidia-drivers); reinstalling it here can lead to version mismatches.
+:::
 
-Download from [developer.nvidia.com/cuda-downloads]((https://developer.nvidia.com/cuda-13-0-0-download-archive)).
+Download from [developer.nvidia.com/cuda-downloads](https://developer.nvidia.com/cuda-13-0-0-download-archive).
 
 <Tabs>
 <TabItem value="windows" label="Windows" default>
 
 1. Choose **Windows → x86_64 → exe (local)**
-2. Run the installer — default options are fine
+2. Run the installer, and select a **Custom installation** — then **uncheck the "Driver" component**, keeping only the CUDA Toolkit components
 3. Verify in the command prompt:
 
 ```bash
@@ -124,7 +159,16 @@ nvcc --version
 
 Expected output :
 
-![Resultats Tests](../images/nvcc-installation-check.png)
+```
+C:\Users\hybridizer-user>nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Wed_Jul_16_20:06:48_Pacific_Daylight_Time_2025
+Cuda compilation tools, release 13.0, V13.0.48
+Build cuda_13.0.r13.0/compiler.36260728_0
+```
+
+This output doesn't have to be exactly the same, but verify the **release version** is 13.0.
 
 ## Step 3: Install .NET 8 SDK
 
@@ -268,6 +312,37 @@ SMs: 46
 Memory: 12282 MB
 ✅ Hybridizer is working!
 ```
+
+Another way to test your setup, in Visual Studio 2022 :
+
+- Open any Visual Studio solution.
+- Open a powershell terminal, and clone this Hybridizer samples repository at the place you desire : 
+
+```bash 
+git clone https://github.com/hybridizer-io/hybridizer-basic-samples.git 
+```
+
+- in the powershell terminal, go to the folder of the sample you want to test with :
+
+```bash
+cd C:\Users\Your\Selected\File\hybridizer-basic-samples\src\Your\Sample
+```
+
+- Build :
+
+```bash
+dotnet build
+```
+
+- Run : 
+
+```bash
+dotnet run
+```
+
+And you will be able to see the output of the sample you have selected. 
+
+You can find some explanations linked to the samples in the [Code Examples](https://docs.hybridizer.io/category/examples/)
 
 ## Troubleshooting
 
