@@ -244,76 +244,10 @@ On **Windows with Visual Studio**, you can also install the **Hybridizer Communi
 
 ## Step 6: Install Git
 
-If you don't already have git, you can install it [here]((https://git-scm.com/install/windows))
+If you don't already have git, you can install it [here](https://git-scm.com/install/windows).
 
 
 ## Step 7: Verify Your Setup
-
-Replace the content of `Program.cs` with:
-
-```csharp
-using System;
-using Hybridizer.Runtime.CUDAImports;
-
-class Program
-{
-    [EntryPoint]
-    public static void TestKernel(int[] output, int N)
-    {
-        for (int i = threadIdx.x + blockDim.x * blockIdx.x;
-             i < N;
-             i += blockDim.x * gridDim.x)
-        {
-            output[i] = i * 2;
-        }
-    }
-
-    static void Main()
-    {
-        // Check GPU
-        cuda.GetDeviceProperties(out cudaDeviceProp prop, 0);
-        Console.WriteLine($"GPU: {new string(prop.name)}");
-        Console.WriteLine($"SMs: {prop.multiProcessorCount}");
-        Console.WriteLine($"Memory: {prop.totalGlobalMem / (1024*1024)} MB");
-
-        // Run kernel
-        int N = 1024;
-        int[] output = new int[N];
-
-        dynamic wrapper = HybRunner.Cuda()
-            .SetDistrib(32, 256);
-        wrapper.TestKernel(output, N);
-        cuda.DeviceSynchronize();
-
-        // Verify
-        bool ok = true;
-        for (int i = 0; i < N; i++)
-        {
-            if (output[i] != i * 2) { ok = false; break; }
-        }
-
-        Console.WriteLine(ok ? "✅ Hybridizer is working!" : "❌ Something went wrong");
-    }
-}
-```
-
-Build and run:
-
-```bash
-dotnet build
-dotnet run
-```
-
-Expected output:
-
-```
-GPU: NVIDIA GeForce RTX 4070
-SMs: 46
-Memory: 12282 MB
-✅ Hybridizer is working!
-```
-
-Another way to test your setup, in Visual Studio 2022 :
 
 - Open any Visual Studio solution.
 - Open a powershell terminal, and clone this Hybridizer samples repository at the place you desire : 
